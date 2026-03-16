@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+
+        <h2 class="logo">Majlis</h2>
+
+        <div class="service-search">
+            <form action="/search-service" method="GET">
+                <input type="text" name="q" placeholder="Search designs...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+    </div>
+</header>
+
+<section class="designs">
+    <div class="design-grid">
+
+{% for d in designs %}
+<a href="/design/{{ d[0] }}" class="design-card">
+
+    <div class="design-image">
+        <img src="{{ url_for('static', filename=d[3]) }}" alt="{{ d[1] }}" loading="lazy">
+    </div>
+
+    <div class="design-info">
+        <h3>{{ d[1] }}</h3>
+        <p>Click to view design gallery</p>
+    </div>
+
+</a>
+{% endfor %}
+
+    </div>
+</section>
+
+</body>
+</html>

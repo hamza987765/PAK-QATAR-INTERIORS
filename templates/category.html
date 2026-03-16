@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }}</title>
+</head>
+<body>
+
+<h1>{{ category.name }}</h1>
+
+<form method="get">
+    <select name="brand">
+        <option value="">All Brands</option>
+        {% for b in brands %}
+            <option value="{{ b.brand }}">{{ b.brand }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="text" name="search" placeholder="Search product">
+    <button type="submit">Filter</button>
+</form>
+
+<hr>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+{% for p in products %}
+    <div style="border:1px solid #ccc; padding:10px; width:200px;">
+        <img src="{{ url_for('static', filename='uploads/' + p.image) }}" width="100%">
+        <h3>{{ p.name }}</h3>
+        <p>Brand: {{ p.brand }}</p>
+        <p>Rs {{ p.price }}</p>
+    </div>
+{% endfor %}
+</div>
+
+</body>
+</html>

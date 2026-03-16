@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<section class="shop-page">
+
+<h1>All Products</h1>
+
+<!-- FILTER BAR -->
+<div class="shop-filters">
+
+<form method="GET" action="/shop" class="search-form">
+
+<input type="text" name="search" placeholder="Search products">
+
+<select name="brand">
+<option value="">All Brands</option>
+
+{% for b in brands %}
+<option value="{{ b }}">{{ b }}</option>
+{% endfor %}
+
+</select>
+
+<button type="submit">Search</button>
+
+</form>
+
+</div>
+
+
+<div class="product-grid">
+
+{% for p in products %}
+
+<div class="product-card">
+
+<img src="{{ url_for('static', filename='images/' + p[4]) }}">
+
+<h3>{{ p[1] }}</h3>
+
+<p class="price">Rs {{ p[2] }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+</body>
+</html>

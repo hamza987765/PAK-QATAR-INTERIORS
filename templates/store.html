@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>My Shop</h1>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+    <h3>Categories</h3>
+    {% for c in categories %}
+        <div class="category-tile" onclick="loadCategory('{{ c[0] }}', this)">
+            {{ c[1] }}
+        </div>
+    {% endfor %}
+</aside>
+
+<main>
+    <div id="products" class="products"></div>
+</main>
+
+</div>
+
+<script>
+function loadCategory(id, el) {
+    document.querySelectorAll('.category-tile')
+        .forEach(e => e.classList.remove('active'));
+    el.classList.add('active');
+
+    fetch(`/products?category=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            const p = document.getElementById("products");
+            p.innerHTML = "";
+
+            if (data.length === 0) {
+                p.innerHTML = "<p>No products found</p>";
+                return;
+            }
+
+            data.forEach(x => {
+                p.innerHTML += `
+                <div class="product-card">
+                    <img src="/static/uploads/${x[4]}">
+                    <h3>${x[1]}</h3>
+                    <p>Rs ${x[2]}</p>
+                    <p>Stock: ${x[3]}</p>
+                </div>
+                `;
+            });
+        });
+}
+</script>
+
+</body>
+</html>

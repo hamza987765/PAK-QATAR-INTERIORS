@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <a href="/" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="PAK QATAR INTERIOR">
+    </a>
+
+    <div>
+        <a class="active">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/about">About</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>Transform Your Space With Style</h1>
+            <p>Creating beautiful interiors for your home & office</p>
+            <a href="/shop" class="btn">Explore Our Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+    {% for c in categories %}
+        <a href="/shop?category={{ c[1] }}"
+           class="cat-tile"
+           style="background-image: url('{{ url_for('static', filename=c[2]) }}'); background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+background-color: #f8f8f8;
+ ">
+            <span class="cat-name">{{ c[1] }}</span>
+        </a>
+    {% endfor %}
+</section>
+<!-- SERVICES -->
+<section class="services">
+    <h2>Our Interior Services</h2>
+
+    <div class="services-grid">
+        {% for s in services %}
+       <a href="/service/{{ s[0] }}" class="service-link">
+    <div class="service-card">
+        <img src="{{ url_for('static', filename=s[3]) }}">
+        <h3>{{ s[1] }}</h3>
+        <p>{{ s[2] }}</p>
+    </div>
+</a>
+
+        {% endfor %}
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why">
+    <h2>Why Choose Us?</h2>
+    <div class="why-grid">
+        <div class="why-box">
+            <h3>Expert Designers</h3>
+            <p>Years of experience crafting elegant interiors.</p>
+        </div>
+        <div class="why-box">
+            <h3>Personalized Solutions</h3>
+            <p>Designs tailored to your space and taste.</p>
+        </div>
+        <div class="why-box">
+            <h3>Quality Craftsmanship</h3>
+            <p>Premium materials with lasting quality.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Ready to Transform Your Home?</h2>
+    <div class="btn dark no-click">Get in Touch Today</div>
+
+</section>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="footer">
+    <p>📍 Islamabad,Pakistan</p>
+    <p>📞 0307-5777969</p>
+    <p>✉️ info@pakqatar.com</p>
+    <div class="social-icons">
+    <!-- WhatsApp -->
+    <a href="https://wa.me/923075777969" target="_blank" class="social-link whatsapp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/pak_qatar.interiors?igsh=cXg5cWUzcG1laWdp" target="_blank" class="social-link instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/share/1Dit42ZfSB/" target="_blank" class="social-link facebook">
+        <i class="fab fa-facebook"></i>
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@pak.qatar.interio?_r=1&_t=ZS-93rHrVIhOT4" target="_blank" class="social-link tiktok">
+        <i class="fab fa-tiktok"></i>
+    </a>
+</div>
+
+</footer>
+
+<!-- Add this in <head> section of your HTML -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+</body>
+</html>
