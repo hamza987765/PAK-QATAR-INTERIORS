@@ -8,8 +8,8 @@ os.makedirs("static/uploads/service_designs", exist_ok=True)
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "fallback-secret")
 
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "1234"
+ADMIN_USERNAME = "Admin"
+ADMIN_PASSWORD = "ISBPESH"
 
 UPLOAD_FOLDER = "static/images"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
