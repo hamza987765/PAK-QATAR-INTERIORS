@@ -130,31 +130,32 @@
                     </tr>
 
                     {% for p in products %}
-                    <tr data-id="{{ p[0] }}">
-                        <td><input name="name" value="{{ p[1] }}"></td>
-                        <td><input name="brand" value="{{ p[5] }}"></td>
-                        <td><input name="price" value="{{ p[2] }}"></td>
-                        <td><input name="stock" value="{{ p[3] }}"></td>
-                        <td>
-                            <select name="category_id">
-                                {% for c in categories %}
-                                <option value="{{ c[0] }}" {% if c[1] == p[6] %}selected{% endif %}>
-                                    {{ c[1] }}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td class="actions">
-                            <button type="button" class="add save-product">Save</button>
-                            <a href="/delete-product/{{ p[0] }}">
-                                <button type="button" class="delete">Delete</button>
-                            </a>
-                        </td>
+                    <tr>
+                        <form action="/edit-product/{{ p[0] }}" method="post">
+                            <td><input name="name" value="{{ p[1] }}" required></td>
+                            <td><input name="brand" value="{{ p[5] }}" required></td>
+                            <td><input name="price" value="{{ p[2] }}" required></td>
+                            <td><input name="stock" value="{{ p[3] }}" required></td>
+                            <td>
+                                <select name="category_id" required>
+                                    {% for c in categories %}
+                                    <option value="{{ c[0] }}" {% if c[1] == p[6] %}selected{% endif %}>
+                                        {{ c[1] }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="actions">
+                                <button type="submit" class="add">Save</button>
+                                <a href="/delete-product/{{ p[0] }}">
+                                    <button type="button" class="delete">Delete</button>
+                                </a>
+                            </td>
+                        </form>
                     </tr>
                     {% endfor %}
                 </table>
             </div>
-
         </div>
 
         <!-- ================= SERVICES ================= -->

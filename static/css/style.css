@@ -1142,3 +1142,15 @@ border:none;
 border-radius:6px;
 cursor:pointer;
 }
+.logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #2c2c2c;
+    font-family: 'Playfair Display', serif;
+}
+
+.logo-text:hover {
+    color: #6b5c4d;
+}

@@ -528,7 +528,10 @@ def add_product():
 # ---------- EDIT PRODUCT ----------
 @app.route("/edit-product/<int:id>", methods=["POST"])
 def edit_product(id):
-    data = request.get_json()
+    if not admin_required():
+        return redirect("/login")
+
+    data = request.form
 
     conn = sqlite3.connect("shop.db")
     cursor = conn.cursor()
@@ -549,7 +552,7 @@ def edit_product(id):
     conn.commit()
     conn.close()
 
-    return jsonify({"success": True})
+    return redirect("/admin")
 
 
 # ---------- DELETE ----------
