@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, redirect, session, jsonify
 import sqlite3
 import os
 from werkzeug.utils import secure_filename
-
+os.makedirs("static/images", exist_ok=True)
+os.makedirs("static/uploads", exist_ok=True)
+os.makedirs("static/uploads/service_designs", exist_ok=True)
 app = Flask(__name__)
-app.secret_key = "change-this-now"
+app.secret_key = os.environ.get("SECRET_KEY", "fallback-secret")
 
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "1234"
@@ -61,7 +63,14 @@ CREATE TABLE IF NOT EXISTS service_designs (
     FOREIGN KEY (service_id) REFERENCES services(id)
 )
 """)
-
+    c.execute("""
+CREATE TABLE IF NOT EXISTS service_design_images (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    design_id INTEGER,
+    image_path TEXT,
+    FOREIGN KEY (design_id) REFERENCES service_designs(id)
+)
+""")
     
     conn.commit()
     conn.close()
