@@ -36,7 +36,7 @@
     <div class="product-card" data-name="{{ p[1] }}" data-brand="{{ p[5] }}">
         <img src="{{ url_for('static', filename='images/' + p[4]) }}" alt="{{ p[1] }}">
         <h3>{{ p[1] }}</h3>
-        <p>Price: ${{ p[2] }}</p>
+        <p>Price: PKR{{ p[2] }}</p>
         <p>Stock: {{ p[3] }}</p>
         {% if p[5] %}<p>Brand: {{ p[5] }}</p>{% endif %}
     </div>
